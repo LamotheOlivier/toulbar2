@@ -35,12 +35,12 @@ for i in range(N):
 					if X_i - X_j < j+1:
 						if Y_i >= Y_j:
 							if Y_i - Y_j < j+1:
-								ListConstraintsOverlaps.append(1)
+								ListConstraintsOverlaps.append(min(j+1-(X_i - X_j),i+1)*min(j+1-(Y_i - Y_j),i+1))
 							else:
 								ListConstraintsOverlaps.append(0)
 						else:
 							if Y_j - Y_i < i+1:
-								ListConstraintsOverlaps.append(1)
+								ListConstraintsOverlaps.append(min(j+1-(X_i - X_j),i+1)*min(i+1-(Y_j - Y_i),j+1))
 							else:
 								ListConstraintsOverlaps.append(0)
 					else:
@@ -49,12 +49,12 @@ for i in range(N):
 					if X_j - X_i < i+1:
 						if Y_i >= Y_j:
 							if Y_i - Y_j < j+1:
-								ListConstraintsOverlaps.append(1)
+								ListConstraintsOverlaps.append(min(i+1-(X_j - X_i),j+1)*min(j+1-(Y_i - Y_j),i+1))
 							else:
 								ListConstraintsOverlaps.append(0)
 						else:
 							if Y_j - Y_i < i+1:
-								ListConstraintsOverlaps.append(1)
+								ListConstraintsOverlaps.append(min(i+1-(X_j - X_i),j+1)*min(i+1-(Y_j - Y_i),j+1))
 							else:
 								ListConstraintsOverlaps.append(0)
 					else:
