@@ -9,12 +9,20 @@ Weighted latin square problem
 Brief description
 =================
 
-The problem consists in assigning a value from 0 to N-1 to every cell of a NxN chessboard. Each row and each column must be a permutation of N values. For each cell, a random weight in (1...N) is associated to every domain value. The objective is to find a complete assignment where the sum of the weights associated to the selected values for the cells is minimized.
+The problem consists in assigning a value from 0 to N-1 to every cell of a NxN chessboard.
+
+Each row and each column must be a permutation of N values. For each cell, a random weight in (1...N) is associated to every domain value.
+
+The objective is to find a complete assignment where the sum of the weights associated to the selected values for the cells is minimized.
 
 CFN model
 =========
 
-We create NxN variables for all cells with domain size N. A hard AllDifferent global cost function is used to model a permutation for every row and every column. Random weights are generated for every cell and domain value. Forbidden assignments have cost k=N**3+1.
+We create NxN variables, one for all cells, with domain size N. A hard AllDifferent global cost function is used to model a permutation for every row and every column.
+
+Random weights are generated for every cell and domain value.
+
+The worst solution possible is when every cell is associated with a weight of N, so the maximum cost of a solution is N**3, so forbidden assignments have cost k=N**3+1.
 
 Example for N=4 in JSON .cfn format
 ===================================
@@ -58,12 +66,12 @@ Optimal solution with cost 35 for the latin 4-square example (in red, weights as
 .. image:: ../../../web/IMAGES/latin4.png
    :height: 250px
 
-Python model generator
+Python model solver
 ======================
 
-The following code using python3 interpreter will generate the previous example if called without argument. Otherwise the first argument is the dimension N of the chessboard (e.g. "python3 latinsquare.py 6").
+The following code using python3 interpreter will solve the weighted latin square problem with the first argument being the dimension N of the chessboard and with randomized cost for each cell(e.g. "python3 LatinSquare.py 6").
 
-:download:`latinsquare.py<../../../web/TUTORIALS/latinsquare.py>`
+:download:`LatinSquare.py<../../../web/TUTORIALS/LatinSquare.py>`
 
-.. literalinclude:: ../../../web/TUTORIALS/latinsquare.py
+.. literalinclude:: ../../../web/TUTORIALS/LatinSquare.py
 

@@ -9,21 +9,23 @@ Square soft packing problem
 Brief description
 =================
 
-Find a packing of squares of size 1×1, 2×2,..., NxN into a given container square SxS minimizing total sum of overlaps.
+The problem is almost identical to the Square packing problem with the difference that we now allow overlaps but we want to minimize it.
 
 CFN model
 =========
 
-We reuse the :ref:`tuto_spp` model except that binary constraints are replaced by cost functions returning the overlapping size or zero if no overlaps. The initial upper bound is a worst-case upper estimation of total sum of overlaps.
+We reuse the :ref:`tuto_spp` model except that binary constraints are replaced by cost functions returning the overlapping size or zero if no overlaps.
 
-Python model generator
+To calculate an initial upper bound we will simply say that the worst case scenario can't be worse if we had N N*N square that are all stacks together. The cost of this is N**4, so we will take N**4 as the initial upperbound.
+
+Python model solver
 ======================
 
-The following code using python3 interpreter will generate the corresponding cost function network (e.g. "python3 squaresoft 10 20").
+The following code using python3 interpreter will solve the corresponding cost function network (e.g. "python3 SquareSoftpytb2.py 10 20").
 
-:download:`squaresoft.py<../../../web/TUTORIALS/squaresoft.py>`
+:download:`SquareSoftpytb2.py<../../../web/TUTORIALS/SquareSoftpytb2.py>`
 
-.. literalinclude:: ../../../web/TUTORIALS/squaresoft.py
+.. literalinclude:: ../../../web/TUTORIALS/SquareSoftpytb2.py
 
 C++ program using libtb2.so
 ===========================

@@ -63,15 +63,12 @@ Optimal solution with cost 11 for the 4-queen example :
 .. image:: ../../../web/IMAGES/queen4.png
    :height: 250px
 
-Python model generator
-======================
+Python model solver
+===================
 
-The following code using python3 interpreter will generate the previous example if called without argument. Otherwise the first argument is the number of queens N (e.g. "python3 queens.py 8").
+The following code using python3 interpreter will solve the weighted queen problem with the first argument being the number of queens N (e.g. "python3 WeightedQueens.py 8").
 
-.. note::
-   Notice that the first lines of code (import and functions flatten and cfn) are needed by all the other tutorial examples.
+:download:`WeightedQueens.py<../../../web/TUTORIALS/WeightedQueens.py>`
 
-:download:`queens.py<../../../web/TUTORIALS/queens.py>`
-
-.. literalinclude:: ../../../web/TUTORIALS/queens.py
+.. literalinclude:: ../../../web/TUTORIALS/WeightedQueens.py
 
