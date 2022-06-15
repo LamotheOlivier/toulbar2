@@ -62,8 +62,17 @@ for l in range(K-1):
 		if k > l:
 			Constraints.append(Top)
 		else:
-			Constrainst.append(0)
+			Constraints.append(0)
 	Problem.AddFunction([Var[l]], Constraints)
 
 #Problem.Dump(sys.argv[1].replace('.mat','.cfn'))
-Problem.Solve(showSolutions = 3)
+res = Problem.Solve(showSolutions = 3)
+	
+if res:
+	for i in range(K):
+		Line = []
+		for j in range(K):
+			Line.append(res[0][i*K+j])
+		print(Line)
+	for i in range(N):
+		print("The node number " + str(i+1) + " is in cluster " + str(res[0][K**2+i]) + ".")
