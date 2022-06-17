@@ -22,7 +22,7 @@ for u in range(K):
 		Problem.AddVariable("M_" + str(u) + "_" + str(v), range(2))
 
 
-#Create a variablle for each node
+#Create a variable for each node
 for i in range(N):
 	Problem.AddVariable(Var[i], range(K))
 

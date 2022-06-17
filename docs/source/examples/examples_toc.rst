@@ -17,6 +17,8 @@ List of all examples
    tuto_wlp.rst
    tuto_spp.rst
    tuto_sspp.rst
+   tuto_grp.rst
+   tuto_bcp.rst
 
    ltps.rst
    rccs.rst
