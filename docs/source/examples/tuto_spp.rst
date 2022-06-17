@@ -33,10 +33,10 @@ We make the problem a pure satisfaction problem by fixing S. The initial upper b
 Python model solver
 ===================
 
-The following code uses the pytoulbar2 module to generate the cost function network and solve it (e.g. "python3 square2.py 3 5"). 
-:download:`square2.py<../../../web/TUTORIALS/square2.py>`
+The following code uses the pytoulbar2 module to generate the cost function network and solve it (e.g. "python3 Square.py 3 5"). 
+:download:`Square.py<../../../web/TUTORIALS/Square.py>`
 
-.. literalinclude:: ../../../web/TUTORIALS/square2.py
+.. literalinclude:: ../../../web/TUTORIALS/Square.py
 
 C++ program using libtb2.so
 ===========================

@@ -21,11 +21,11 @@ To calculate an initial upper bound we will simply say that the worst case scena
 Python model solver
 ======================
 
-The following code using python3 interpreter will solve the corresponding cost function network (e.g. "python3 SquareSoftpytb2.py 10 20").
+The following code using python3 interpreter will solve the corresponding cost function network (e.g. "python3 SquareSoft.py 10 20").
 
-:download:`SquareSoftpytb2.py<../../../web/TUTORIALS/SquareSoftpytb2.py>`
+:download:`SquareSoft.py<../../../web/TUTORIALS/SquareSoft.py>`
 
-.. literalinclude:: ../../../web/TUTORIALS/SquareSoftpytb2.py
+.. literalinclude:: ../../../web/TUTORIALS/SquareSoft.py
 
 C++ program using libtb2.so
 ===========================

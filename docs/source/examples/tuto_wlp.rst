@@ -32,9 +32,9 @@ Original data files can be download from the cost function library `warehouses <
 Python model solver
 ===================
 
-The following code uses the pytoulbar2 module to generate the cost function network and solve it (e.g. "python3 warehouse2.py cap44.txt 1" found optimum value equal to 10349757). Other instances are available `here <https://forgemia.inra.fr/thomas.schiex/cost-function-library/tree/master/crafted/warehouses/instances/cfn>`_ in cfn format.
+The following code uses the pytoulbar2 module to generate the cost function network and solve it (e.g. "python3 Warehouse.py cap44.txt 1" found optimum value equal to 10349757). Other instances are available `here <https://forgemia.inra.fr/thomas.schiex/cost-function-library/tree/master/crafted/warehouses/instances/cfn>`_ in cfn format.
 
-:download:`warehouse2.py<../../../web/TUTORIALS/warehouse2.py>`
+:download:`Warehouse.py<../../../web/TUTORIALS/Warehouse.py>`
 
-.. literalinclude:: ../../../web/TUTORIALS/warehouse2.py
+.. literalinclude:: ../../../web/TUTORIALS/Warehouse.py
 

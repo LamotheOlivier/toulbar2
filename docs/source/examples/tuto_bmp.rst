@@ -79,8 +79,8 @@ See other examples, such as `PoliticalActor <https://www.ifip.com/Partitioning_P
 Python model solver
 ===================
 
-The following code using python3 interpreter will solve the corresponding cost function network (e.g. "python3 blockmodel_tb2.py simple.mat 3").
+The following code using python3 interpreter will solve the corresponding cost function network (e.g. "python3 BlockModel.py simple.mat 3").
 
-:download:`blockmodel.py<../../../web/TUTORIALS/blockmodel_tb2.py>`
+:download:`BlockModel.py<../../../web/TUTORIALS/BlockModel.py>`
 
-.. literalinclude:: ../../../web/TUTORIALS/blockmodel_tb2.py
+.. literalinclude:: ../../../web/TUTORIALS/BlockModel.py
