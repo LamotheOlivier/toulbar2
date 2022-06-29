@@ -22,18 +22,18 @@ CFN model
 =========
 
 We create an integer variable of domain size (S-i)x(S-i) for each square.
-The variable will represent the position of the top left corner of the square.
+The variable represents the position of the top left corner of the square.
 
 The value of a given variable modulo (S-i) gives the x-coordinate, whereas its value divided by (S-i) gives the y-coordinate.
 
 We have hard binary constraints to forbid any overlapping pair of squares.
 
-We make the problem a pure satisfaction problem by fixing S. The initial upper bound is 1.
+We make the problem a pure satisfaction problem by fixing the initial upper bound to 1.
 
-Python model solver
-===================
+Python model
+============
 
-The following code uses the pytoulbar2 module to generate the cost function network and solve it (e.g. "python3 Square.py 3 5"). 
+The following code uses the pytoulbar2 library to generate the cost function network and solve it (e.g. "python3 Square.py 3 5"). 
 :download:`Square.py<../../../web/TUTORIALS/Square.py>`
 
 .. literalinclude:: ../../../web/TUTORIALS/Square.py
@@ -41,7 +41,7 @@ The following code uses the pytoulbar2 module to generate the cost function netw
 C++ program using libtb2.so
 ===========================
 
-The following code uses the C++ toulbar2 library libtb2.so. Compile toulbar2 with "cmake -DLIBTB2=ON -DPYTB2=ON . ; make" and copy the library in your current directory "cp lib/Linux/libtb2.so ." before compiling "g++ -o square square.cpp -Isrc -Llib/Linux -std=c++11 -O3 -DNDEBUG -DBOOST -DLONGDOUBLE_PROB -DLONGLONG_COST -DWCSPFORMATONLY libtb2.so" and running the example (e.g. "./square 15 36").
+The following code uses the C++ toulbar2 library. Compile toulbar2 with "cmake -DLIBTB2=ON -DPYTB2=ON . ; make" and copy the library in your current directory "cp lib/Linux/libtb2.so ." before compiling "g++ -o square square.cpp -Isrc -Llib/Linux -std=c++11 -O3 -DNDEBUG -DBOOST -DLONGDOUBLE_PROB -DLONGLONG_COST -DWCSPFORMATONLY libtb2.so" and running the example (e.g. "./square 15 36").
 
 :download:`square.cpp<../../../web/TUTORIALS/square.cpp>`
 

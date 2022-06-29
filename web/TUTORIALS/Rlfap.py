@@ -1,5 +1,4 @@
 import sys
-
 import pytoulbar2
 
 class Data:
@@ -49,7 +48,8 @@ data = Data(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
 
 top = data.top
 Problem = pytoulbar2.CFN(top)
-#create a varaible for each link
+
+#create a variable for each link
 for e in data.var:
 	domain = []
 	for f in data.dom[e[1]]:
@@ -67,7 +67,7 @@ for (var1, var2, operand, deviation, weight) in data.ctr:
 				ListConstraints.append(data.cost.get('a' + str(weight),top))
 	Problem.AddFunction(['link' + str(var1), 'link' + str(var2)], ListConstraints)
 
-#unary constraints
+#unary hard and soft constraints
 for e in data.var:
 	if len(e) >= 3: 
 		ListConstraints = []
@@ -82,7 +82,7 @@ for e in data.var:
 Problem.CFN.timer(300)
 res = Problem.Solve(showSolutions=3)
 if res:
-	print("Best solution found with cost: ",int(res[1])," in ", Problem.GetNbNodes(), " search nodes.")
+	print("Best solution found with cost:",int(res[1]),"in", Problem.GetNbNodes(), "search nodes.")
 else:
 	print('Sorry, no solution found!')
 

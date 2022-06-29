@@ -11,43 +11,44 @@ Brief description
 
 This is a clustering problem, occuring in social network analysis.
 
-The problem is to divide a given graph G into k clusters such that the interactions between clusters can be summarized by a k*k 0/1 matrix M: if M[i,j]=1 then all the nodes in cluster i should be connected to all the nodes in cluster j in G, else if M[i,j]=0 then there should be no edge between the nodes in G.
+The problem is to divide a given directed graph G into k clusters such that the interactions between clusters can be summarized by a k*k 0/1 matrix M: if M[i,j]=1 then all the nodes in cluster i should be connected to all the nodes in cluster j in G, else if M[i,j]=0 then there should be no edge in G between the nodes from the two clusters.
 
-For example, the folowing graph is composed of 4 nodes:
+For example, the following graph G is composed of 4 nodes:
 
 .. image:: ../../../web/IMAGES/graph.png
    :height: 200px
 
-and is corresponding to the following matrix:
+and corresponds to the following matrix:
 
 .. image:: ../../../web/IMAGES/matrix.png
    :height: 100px
 
-But he can be perfectly clusterized into the following graph by clustering together the node 0, 2 and 3:
+It can be perfectly clusterized into the following graph by clustering together the nodes 0, 2 and 3 in cluster 1 and the node 1 in cluster 0:
 
 .. image:: ../../../web/IMAGES/graph2.png
    :height: 75px
 
-and this graph is corresponding to the following matrix:
+and this graph corresponds to the following M matrix:
 
 .. image:: ../../../web/IMAGES/matrix2.png
    :height: 50px
 
-But if we decide to cluster the following graph into the same graph as above, the edges (2, 3) will be 'lost' in the process and the cost of the solution above for the following graph will be 1.
+On the contrary, if we decide to cluster the next graph G' in the same way as above, the edge (2, 3) will be 'lost' in the process and the cost of the solution will be 1.
 
 .. image:: ../../../web/IMAGES/graph3.png
    :height: 200px
 
 The goal is to find a k-clustering of a given graph and the associated matrix M that minimize the number of erroneous edges.
+
 `A Mattenet, I Davidson, S Nijssen, P Schaus. Generic Constraint-Based Block Modeling Using Constraint Programming. CP 2019, pp656-673, Stamford, CT, USA <https://www.jair.org/index.php/jair/article/download/12280/26656>`_.
 
 CFN model
 =========
 
-We create N variables, one for every node of the graph, with domain size k.
+We create N variables, one for every node of the graph, with domain size k representing the clustering.
 We add k*k Boolean variables for representing M.
 
-For all triplets of two nodes u, v, and one matrix cell M[i,j], we have a ternary cost function which returns a cost of 1 if node u is assigned to cluster i, v to j, and M[i,j]=1 but (u,v) is not in G, or M[i,j]=0 and (u,v) in G. In order to break symmetries, we constrain the first k-1 node variables to be assigned to cluster index less than or equal to their index
+For all triplets of two nodes u, v, and one matrix cell M[i,j], we have a ternary cost function which returns a cost of 1 if node u is assigned to cluster i, v to j, and M[i,j]=1 but (u,v) is not in G, or M[i,j]=0 and (u,v) is in G. In order to break symmetries, we constrain the first k-1 node variables to be assigned to a cluster number less than or equal to their index
 
 Data
 ====
@@ -76,10 +77,10 @@ See other examples, such as `PoliticalActor <https://www.ifip.com/Partitioning_P
 :download:`sharpstone.mat <../../../web/TUTORIALS/sharpstone.mat>` |
 :download:`transatlantic.mat <../../../web/TUTORIALS/transatlantic.mat>`.
 
-Python model solver
-===================
+Python model
+============
 
-The following code using python3 interpreter will solve the corresponding cost function network (e.g. "python3 BlockModel.py simple.mat 3").
+The following code using pytoulbar2 library solves the corresponding cost function network (e.g. "python3 BlockModel.py simple.mat 3").
 
 :download:`BlockModel.py<../../../web/TUTORIALS/BlockModel.py>`
 

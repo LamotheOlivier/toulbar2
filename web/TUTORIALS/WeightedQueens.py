@@ -1,7 +1,6 @@
 import sys
 from random import seed, randint
 seed(123456789)
-
 import pytoulbar2
 
 N = int(sys.argv[1])
@@ -16,7 +15,7 @@ for i in range(N):
 for i in range(N):
 	for j in range(i+1,N):
 	    	
-		#Two queen cannot be on the same row constraints
+		#Two queens cannot be on the same row constraints
 		ListConstraintsRow = []
 		for a in range(N):
 			for b in range(N):
@@ -46,7 +45,7 @@ for i in range(N):
 				 	ListConstraintsLowerD.append(top)
 		Problem.AddFunction([i, j], ListConstraintsLowerD)
 
-# random unary costs
+#Random unary costs
 for i in range(N):
 	ListConstraintsUnaryC = []
 	for j in range(N):
@@ -55,9 +54,12 @@ for i in range(N):
 
 
 #Problem.Dump('WeightQueen.cfn')
+Problem.CFN.timer(300)
 res = Problem.Solve(showSolutions = 3)
 if res:
 	for i in range(N):
-		row = [' ' for j in range(N)]
-		row[res[0][i]] = 'X'
+		row = ['X' if res[0][j]==i else ' ' for j in range(N)]
 		print(row)
+	# and its cost
+	print("Cost:", int(res[1]))
+

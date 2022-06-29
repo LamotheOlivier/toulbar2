@@ -1,7 +1,7 @@
 .. _tuto_bcp:
 
 ========================
-Board Coloration problem
+Board coloration problem
 ========================
 
 .. include:: menu_backto.rst
@@ -9,31 +9,33 @@ Board Coloration problem
 Brief description
 =================
 
-Given a squared board with dimension n*m, the goal is to colored the squares so any given rectangle included inside the board doesn't have each corner colored with the same color. 
+Given a rectangular board with dimension n*m, the goal is to color the cells such that any inner rectangle included inside the board doesn't have all its corners colored with the same color. 
+The goal is to minimize the number of colors used.
 
-For examples, this is not a valid solution of the 3*4 problem, because the red and blue square have both their 4 corner with the same color:
+For examples, this is not a valid solution of the 3*4 problem, because the red and blue rectangles have both their 4 corners having the same color:
 
 .. image:: ../../../web/IMAGES/TChess.png
 
-On the contrary the folowing coloration is a valid solution of the 3*4 problem because every given rectangle inside the board don't have matching color corner:
+On the contrary the folowing coloration is a valid solution of the 3*4 problem because every inner rectangle inside the board does not have a unique color for its corners:
 
 .. image:: ../../../web/IMAGES/FChess.png
-CFN model
-=========
 
-We create n*m variables, one for each square of the board, with domain size equal to n*m representing all the possible color. We also create one variable for the number of color.
+CFN basic model
+===============
 
-We create hard quaterny constraints for every rectangle inside the board with cost equal to 0 if the 4 variable have different value and top if not.
+We create n*m variables, one for each square of the board, with domain size equal to n*m representing all the possible colors. We also create one variable for the number of colors.
 
-We then create hard binary constraints with the variable of the number of color for each square to fix the variable for the number of color as an upper bound.
+We create hard quaterny constraints for every rectangle inside the board with cost equal to 0 if the 4 variables have different values and a forbidden cost if not.
 
-Then we create a soft constraints on the number of color to minimize it.
+We then create hard binary constraints between the variable of the number of colors for each cell to fix the variable for the number of colors as an upper bound.
+
+Then we create a soft constraint on the number of colors to minimize it.
 
 
-Python model solver
-===================
+Python model
+============
 
-The following code using python3 interpreter will solve the board coloration problem with the first two arguments being the dimension n and m of the board (e.g. "python3 BoardColoration.py 8").
+The following code using pytoulbar2 library solves the board coloration problem with the first two arguments being the dimension n and m of the board (e.g. "python3 BoardColoration.py 3 4").
 
 :download:`BoardColoration.py<../../../web/TUTORIALS/BoardColoration.py>`
 

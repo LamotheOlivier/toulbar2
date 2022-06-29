@@ -9,8 +9,6 @@ class Data:
 		self.softeq = list()
 		self.softne = list()
 		self.nbsoft = 0
-		self.top = 1
-		self.cst = 0
 
 		stream = open(filename)
 		for line in stream:
@@ -43,10 +41,7 @@ class Data:
 				(CD, route1, route2, s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10) = line.split()[:14]
 				self.softne.append((int(route1), int(route2), [int(s) for s in [s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10]]))
 
-			self.cst = 10*k*self.nbsoft**2
-			self.top += self.cst
-			self.top += 10*self.nbsoft**2
-        
+		self.top = 10*(k+1)*self.nbsoft**2 + 1        
 
 if len(sys.argv) < 2:
 	exit('Command line argument is composed of the problem data filename and the relaxation level')
@@ -56,7 +51,8 @@ k = int(sys.argv[2])
 data = Data(sys.argv[1], k)
 
 Problem = pytoulbar2.CFN(data.top)
-#create a variable foe each link
+
+#create a variable for each link
 for e in list(data.var.keys()):
 	domain = []
 	for i in data.var[e]:
@@ -93,7 +89,7 @@ for (route1, route2, vartype, operand, deviation) in data.ctr:
 	Problem.AddFunction(["X" + str(route1), "X" + str(route2)], Constraint)
 
 
-#soft equivalent binary constraints
+#soft binary constraints for equal polarization
 for (route1, route2, deviations) in data.softeq:
 	for i in range(11):
 		ListConstraints = []
@@ -110,7 +106,7 @@ for (route1, route2, deviations) in data.softeq:
 		Problem.AddFunction(["X" + str(route1), "X" + str(route2)], ListConstraints)
 
 
-#soft greater or equal to binary constraints
+#soft binary constraints for not equal polarization
 for (route1, route2, deviations) in data.softne:
 	for i in range(11):
 		ListConstraints = []
@@ -126,6 +122,10 @@ for (route1, route2, deviations) in data.softne:
 	 				ListConstraints.append(1)
 		Problem.AddFunction(["X" + str(route1), "X" + str(route2)], ListConstraints)
 
+#zero-arity cost function representing a constant cost corresponding to the relaxation at level k
+Problem.AddFunction([], 10*k*data.nbsoft**2)
 
 #Problem.Dump('Fapp.cfn')
-Problem.Solve(showSolutions =3)
+Problem.CFN.timer(900)
+Problem.Solve(showSolutions=3)
+

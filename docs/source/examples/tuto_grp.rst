@@ -9,32 +9,31 @@ Golomb ruler problem
 Brief description
 =================
 
-A golomb ruler is a set of integer 0=a1<a2<a3<a4<....<an such that each differences between two ak are unique.
+A golomb ruler of order N is a set of integer marks 0=a1<a2<a3<a4<....<aN such that each difference between two ak's are unique.
 
 For examples, this is a golomb ruler:
 
 .. image:: ../../../web/IMAGES/gruler1.png
 
-We can see that every differences are unique, rather than in this ruler where 0-3 and 3-6 both equal 3.
+We can see that all differences are unique, rather than in this other ruler where 0-3 and 3-6 are both equal to 3.
 
 .. image:: ../../../web/IMAGES/gruler2.png
 
-The size of a golomb ruler is equal to an, the greatest number of the ruler. The goal is to find the smallest golomb ruler given the number n of integer. 
+The size of a golomb ruler is equal to aN, the greatest number of the ruler. The goal is to find the smallest golomb ruler given N. 
 
 CFN model
 =========
 
-We create N variables, one for each integer ak. Because we cannnot create an AllDifferent function with differences of variable, we also create a variable for each difference and create hard ternary function in order to fix them equal to the difference.
+We create N variables, one for each integer mark ak. Because we cannnot create an AllDifferent constraint with differences of variables, we also create a variable for each difference and create hard ternary constraints in order to fix them equal to the difference.
+Because we do not use an absolute value when creating the hard constraints, it forces the assignment of ak's variables to follow an increasing order.
 
-Because we do not put absolute value when creating the hard function, it will force the variable ak by increasing order.
+Then we create an AllDifferent constraint on all the difference variables and one unary cost function on the last aN variable in order to minize the size of the ruler.
+In order to break symmetries, we fix the first mark to be zero.
 
-Then we create one variable AllDifferent with all the differences and one soft function on the an variable in order to minize the size of the ruler.
+Python model
+============
 
-
-Python model solver
-===================
-
-The following code using python3 interpreter will solve the golomb ruler problem with the first argument being the number of integer n (e.g. "python3 Golomb.py 8").
+The following code using pytoulbar2 library solves the golomb ruler problem with the first argument being the number of marks N (e.g. "python3 Golomb.py 8").
 
 :download:`Golomb.py<../../../web/TUTORIALS/Golomb.py>`
 

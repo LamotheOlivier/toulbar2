@@ -29,6 +29,7 @@ data = Data(sys.argv[1])
 top = int(data.obs+1)
 
 Problem = pytoulbar2.CFN(top)
+
 #create a variable for each individual
 for i in data.id:
 	domains = []
@@ -42,19 +43,17 @@ for i in data.id:
 ListConstraintsMendelLaw = []
 for p1 in data.ListAlle:
 	for p2 in data.ListAlle:
-		if p1 <= p2:
+		if p1 <= p2:	# father alleles
 			for m1 in data.ListAlle:
 				for m2 in data.ListAlle:
-					if m1 <= m2:
+					if m1 <= m2:	# mother alleles
 						for a1 in data.ListAlle:
 							for a2 in data.ListAlle:
-								if a1 <= a2:
+								if a1 <= a2:	# child alleles
 									if (a1 in (p1,p2) and a2 in (m1,m2)) or (a2 in (p1,p2) and a1 in (m1,m2)) :
 										ListConstraintsMendelLaw.append(0)
 									else :
 									 	ListConstraintsMendelLaw.append(top)
-
-
 
 for i in data.id:
 	#ternary constraints representing mendel's laws
@@ -73,12 +72,10 @@ for i in data.id:
 					 	ListConstraintsObservation.append(1)
 		Problem.AddFunction(['g' + str(i)], ListConstraintsObservation)
 
-
-
 #Problem.Dump('Mendel.cfn')
-res = Problem.Solve(showSolutions =3)
-
+Problem.CFN.timer(300)
+res = Problem.Solve(showSolutions=3)
 if res:
-	print(f'There is {int(res[1])} difference(s) between the solution and the observation.')
+	print('There are',int(res[1]),'difference(s) between the solution and the observation.')
 else:
 	print('No solution found')
